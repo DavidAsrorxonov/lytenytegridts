@@ -27,7 +27,36 @@ export function HeaderSorting({
           const columnId = column.id;
 
           if (customComparators[column.id]) {
+            sort = {
+              columnId,
+              sort: {
+                kind: "custom",
+                columnId,
+                comparator: customComparators[column.id],
+              },
+            };
+          } else if (column.type === "datetime") {
+            sort = {
+              columnId,
+              sort: {
+                kind: "date",
+                options: { includeTime: true },
+              },
+            };
+          } else if (column.type === "number") {
+            sort = { columnId, sort: { kind: "number" } };
+          } else {
+            sort = { columnId, sort: { kind: "string" } };
           }
+
+          grid.state.sortModel.set([sort]);
+          return;
+        }
+
+        if (!current.sort.isDescending) {
+          grid.state.sortModel.set([{ ...current.sort, isDescending: true }]);
+        } else {
+          grid.state.sortModel.set([]);
         }
       }}
     ></div>

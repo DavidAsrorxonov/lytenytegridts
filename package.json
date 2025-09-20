@@ -12,6 +12,7 @@
   "dependencies": {
     "@1771technologies/lytenyte-core": "^1.0.12",
     "@tailwindcss/vite": "^4.1.13",
+    "lucide-react": "^0.544.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "tailwindcss": "^4.1.13"
